@@ -7,3 +7,4 @@
 2024-10-05T14:38:58  fix(format): wire the MCP tool schema
 2024-10-16T09:55:05  docs(cli): pin the test dependencies
 2024-10-28T16:12:12  perf(report): add --fail-on threshold handling
+2024-11-26T11:29:19  style(deps): assert exit codes in tests
