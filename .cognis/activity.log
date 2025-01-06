@@ -9,3 +9,4 @@
 2024-10-28T16:12:12  perf(report): add --fail-on threshold handling
 2024-11-26T11:29:19  style(deps): assert exit codes in tests
 2024-12-08T18:46:26  build(format): add type hints to the public API
+2025-01-06T13:03:33  chore(cli): reduce false positives on edge cases
