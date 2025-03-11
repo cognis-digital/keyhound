@@ -13,3 +13,4 @@
 2025-01-17T08:20:40  style(scan): simplify the walker
 2025-01-29T15:37:47  build(fixtures): improve error messages with context
 2025-02-27T10:54:54  fix(engine): add a regression fixture
+2025-03-11T17:11:01  docs(tests): handle CRLF line endings
