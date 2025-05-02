@@ -16,3 +16,4 @@
 2025-03-11T17:11:01  docs(tests): handle CRLF line endings
 2025-03-22T12:28:08  test(scan): stream large files without buffering
 2025-04-20T19:45:15  ci(fixtures): guard against ReDoS in patterns
+2025-05-02T14:02:22  feat(engine): memoize repeated lookups
