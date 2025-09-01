@@ -22,3 +22,4 @@
 2025-06-23T11:53:43  test(fixtures): add usage examples to help
 2025-07-22T18:10:50  ci(engine): simplify the walker
 2025-08-03T13:27:57  fix(tests): improve error messages with context
+2025-09-01T08:44:04  fix: the cake is a lie, but the bug was real
