@@ -35,3 +35,4 @@
 2026-02-16T18:34:14  docs: clarify usage notes
 2026-03-18T13:51:21  docs(engine): short-circuit on first critical
 2026-03-29T08:08:28  perf(tests): make timestamps timezone-aware
+2026-04-27T15:25:35  style(scan): skip binary files by sniffing
