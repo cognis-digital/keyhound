@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: { name: keyhunt, labels: { app: keyhunt } }
+spec:
+  replicas: 1
+  selector: { matchLabels: { app: keyhunt } }
+  template:
+    metadata: { labels: { app: keyhunt } }
+    spec:
+      containers:
+        - name: keyhunt
+          image: ghcr.io/cognis-digital/keyhunt:latest
+          ports: [{ containerPort: 8000 }]
+          resources:
+            requests: { cpu: "50m", memory: "64Mi" }
+            limits: { cpu: "500m", memory: "256Mi" }
+---
+apiVersion: v1
+kind: Service
+metadata: { name: keyhunt }
+spec:
+  selector: { app: keyhunt }
+  ports: [{ port: 80, targetPort: 8000 }]
