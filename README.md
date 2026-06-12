@@ -16,7 +16,7 @@
 </div>
 
 ```bash
-pip install cognis-keyhunt
+pip install "git+https://github.com/cognis-digital/keyhunt.git"
 keyhunt scan .            # → prioritized findings in seconds
 ```
 
@@ -49,7 +49,7 @@ Instant gratification — point at any router firmware and get 'hardcoded root S
 ## Quick start
 
 ```bash
-pip install cognis-keyhunt
+pip install "git+https://github.com/cognis-digital/keyhunt.git"
 keyhunt --version
 keyhunt scan .                       # scan current project
 keyhunt scan . --format json         # machine-readable
