@@ -20,6 +20,12 @@ pip install "git+https://github.com/cognis-digital/keyhunt.git"
 keyhunt scan .            # → prioritized findings in seconds
 ```
 
+<!-- cognis:layman:start -->
+## What is this?
+
+keyhunt scans firmware images, router configuration files, and filesystem dumps for secrets that should never have been shipped — things like hardcoded passwords, private encryption keys, embedded API tokens, and default login credentials. Point it at a file or folder and it returns a prioritized list of findings in seconds, ready for your terminal, a CI pipeline, or an AI agent. It is aimed at security researchers, IoT/embedded developers, and product teams who need to catch credential leaks before a device ships or after one shows up in the wild.
+<!-- cognis:layman:end -->
+
 ## Contents
 
 - [Why keyhunt?](#why) · [Features](#features) · [Quick start](#quick-start) · [Example](#example) · [Architecture](#architecture) · [AI stack](#ai-stack) · [How it compares](#how-it-compares) · [Integrations](#integrations) · [Install anywhere](#install-anywhere) · [Related](#related) · [Contributing](#contributing)
@@ -46,6 +52,42 @@ Instant gratification — point at any router firmware and get 'hardcoded root S
 <div align="right"><a href="#top">↑ back to top</a></div>
 
 <a name="quick-start"></a>
+<!-- cognis:install:start -->
+## Install
+
+`keyhunt` is source-available (not published to PyPI) — every method below installs
+straight from GitHub. Pick whichever you prefer; the one-line scripts auto-detect
+the best tool available on your machine.
+
+**One-liner (Linux / macOS):**
+```sh
+curl -fsSL https://raw.githubusercontent.com/cognis-digital/keyhunt/HEAD/install.sh | sh
+```
+
+**One-liner (Windows PowerShell):**
+```powershell
+irm https://raw.githubusercontent.com/cognis-digital/keyhunt/HEAD/install.ps1 | iex
+```
+
+**Or install manually — any one of:**
+```sh
+pipx install "git+https://github.com/cognis-digital/keyhunt.git"     # isolated (recommended)
+uv tool install "git+https://github.com/cognis-digital/keyhunt.git"  # uv
+pip install "git+https://github.com/cognis-digital/keyhunt.git"      # pip
+```
+
+**From source:**
+```sh
+git clone https://github.com/cognis-digital/keyhunt.git
+cd keyhunt && pip install .
+```
+
+Then run:
+```sh
+keyhunt --help
+```
+<!-- cognis:install:end -->
+
 ## Quick start
 
 ```bash

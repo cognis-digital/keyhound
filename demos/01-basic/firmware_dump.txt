@@ -1,6 +1,6 @@
 # ---- extracted from /etc/init.d/rcS (busybox) ----
 # default management login left in the image
-telnetd -l /bin/sh -b 0.0.0.0 admin
+busybox telnetd -l admin -p 23 -b 0.0.0.0
 
 # ---- /etc/config/httpd.conf ----
 admin_user=admin

@@ -128,7 +128,7 @@ DETECTORS: List[Detector] = [
         description="Hardcoded password assignment",
         severity="high",
         regex=re.compile(
-            r"(?i)(?:^|[^A-Za-z0-9_])(?:passwd|password|pwd|admin_pass|root_pass)"
+            r"(?i)(?:^|[^A-Za-z0-9_])(?:passwd|password|pwd|admin_pass|admin_password|root_pass|root_password)"
             r"\s*[:=]\s*['\"]([^'\"\n]{3,64})['\"]"
         ),
         secret_group=1,
