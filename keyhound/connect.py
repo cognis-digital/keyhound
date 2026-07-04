@@ -1,13 +1,13 @@
-"""Native cognis-connect emit for keyhunt — forward findings to any platform.
+"""Native cognis-connect emit for keyhound — forward findings to any platform.
 
-Maps keyhunt's JSON output to the canonical `Finding` and forwards it via
+Maps keyhound's JSON output to the canonical `Finding` and forwards it via
 `cognis-connect` (STIX/TAXII, MISP, Sigma, Splunk, Elastic, Slack/Discord, webhook, or a
 `/v1` brief). cognis-connect is a soft dependency:
     pip install "git+https://github.com/cognis-digital/cognis-connect.git"
 
 Usage:
-    keyhunt ... --format json | keyhunt-emit --to stix
-    keyhunt-emit --to slack --url $WEBHOOK --dry-run < findings.json
+    keyhound ... --format json | keyhound-emit --to stix
+    keyhound-emit --to slack --url $WEBHOOK --dry-run < findings.json
 """
 
 from __future__ import annotations
@@ -16,7 +16,7 @@ import argparse
 import json
 import sys
 
-SOURCE = "keyhunt"
+SOURCE = "keyhound"
 
 
 def map_record(rec: dict) -> dict:

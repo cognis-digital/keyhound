@@ -9,7 +9,7 @@ password together.
 
 ## What to expect
 
-`keyhunt` reports **3 findings**:
+`keyhound` reports **3 findings**:
 
 | Detector | Severity | What |
 |---|---|---|
@@ -17,14 +17,14 @@ password together.
 | `connection-uri-password` | high | password inside `DATABASE_URL` (postgres) |
 | `connection-uri-password` | high | password inside `AMQP_URL` (rabbitmq) |
 
-Note keyhunt extracts the **password** out of each URI, not the whole string,
+Note keyhound extracts the **password** out of each URI, not the whole string,
 so the finding points straight at the secret to rotate.
 
 ## Run it
 
 ```sh
-keyhunt scan demos/07-docker-compose
-keyhunt scan demos/07-docker-compose --format json \
+keyhound scan demos/07-docker-compose
+keyhound scan demos/07-docker-compose --format json \
   | jq '.findings[] | {detector, secret, line}'
 ```
 

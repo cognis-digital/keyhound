@@ -9,7 +9,7 @@ isn't in application code, it's in the build configuration.
 
 ## What to expect
 
-`keyhunt` reports **4 critical/high findings**:
+`keyhound` reports **4 critical/high findings**:
 
 | Detector | Severity | What |
 |---|---|---|
@@ -24,10 +24,10 @@ isn't in application code, it's in the build configuration.
 ## Run it
 
 ```sh
-keyhunt scan demos/04-ci-pipeline
+keyhound scan demos/04-ci-pipeline
 
 # CI gate: fail the build only on high+ severity, emit SARIF for code-scanning
-keyhunt scan demos/04-ci-pipeline --format sarif --out keyhunt.sarif --fail-on high
+keyhound scan demos/04-ci-pipeline --format sarif --out keyhound.sarif --fail-on high
 ```
 
 ## How to act

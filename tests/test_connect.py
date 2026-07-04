@@ -1,4 +1,4 @@
-"""Smoke test for the native cognis-connect emit (`keyhunt.connect`)."""
+"""Smoke test for the native cognis-connect emit (`keyhound.connect`)."""
 from __future__ import annotations
 
 import importlib
@@ -8,7 +8,7 @@ import sys
 import pytest
 
 cc = pytest.importorskip("cognis_connect")          # optional [connect] extra
-mod = importlib.import_module("keyhunt.connect")
+mod = importlib.import_module("keyhound.connect")
 
 
 def test_map_record_returns_dict():

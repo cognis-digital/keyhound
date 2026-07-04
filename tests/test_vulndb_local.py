@@ -1,4 +1,4 @@
-from keyhunt.vulndb_local import VulnDB
+from keyhound.vulndb_local import VulnDB
 def test_has_100k_plus_vulns(): assert VulnDB().count() >= 100000
 def test_detailed_metadata():
     r=next(iter(VulnDB()))

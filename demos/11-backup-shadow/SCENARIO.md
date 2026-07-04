@@ -9,7 +9,7 @@ key (`/etc/ssl/private/server.key`).
 
 ## What to expect
 
-`keyhunt` reports **4 findings**:
+`keyhound` reports **4 findings**:
 
 | Detector | Severity | What |
 |---|---|---|
@@ -24,8 +24,8 @@ Locked/disabled accounts (`daemon:*`, `sshd:!`) carry no hash and are correctly
 ## Run it
 
 ```sh
-keyhunt scan demos/11-backup-shadow
-keyhunt scan demos/11-backup-shadow --format json | jq '.findings[].detector'
+keyhound scan demos/11-backup-shadow
+keyhound scan demos/11-backup-shadow --format json | jq '.findings[].detector'
 ```
 
 ## How to act

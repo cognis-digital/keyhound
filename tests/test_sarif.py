@@ -5,7 +5,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from keyhunt.cli import main  # noqa: E402
+from keyhound.cli import main  # noqa: E402
 
 DEMO = os.path.join(
     os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
@@ -24,7 +24,7 @@ def test_sarif_is_valid_2_1_0(capsys):
     assert "$schema" in doc
     run = doc["runs"][0]
     driver = run["tool"]["driver"]
-    assert driver["name"] == "keyhunt"
+    assert driver["name"] == "keyhound"
     assert driver["rules"], "expected at least one rule"
     assert run["results"], "expected at least one result"
     # every result references a declared rule and uses a valid SARIF level

@@ -1,4 +1,4 @@
-"""Tests for the bundled VulnDB and the `keyhunt vulndb` CLI surface.
+"""Tests for the bundled VulnDB and the `keyhound vulndb` CLI surface.
 
 Standard library + pytest only, fully offline — the 262k-record OSV corpus is
 bundled in the package, so these never touch the network.
@@ -9,8 +9,8 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from keyhunt.cli import main  # noqa: E402
-from keyhunt.vulndb_local import VulnDB, count  # noqa: E402
+from keyhound.cli import main  # noqa: E402
+from keyhound.vulndb_local import VulnDB, count  # noqa: E402
 
 
 def test_db_has_many_records():

@@ -3,12 +3,12 @@
 ## Where this came from
 
 A SquashFS root filesystem carved out of a consumer router image with
-`binwalk`. This is keyhunt's headline use case: point it at extracted firmware
+`binwalk`. This is keyhound's headline use case: point it at extracted firmware
 and surface the credentials baked into millions of identical devices.
 
 ## What to expect
 
-`keyhunt` reports **4 findings**:
+`keyhound` reports **4 findings**:
 
 | Detector | Severity | What |
 |---|---|---|
@@ -18,13 +18,13 @@ and surface the credentials baked into millions of identical devices.
 | `hardcoded-password` | high | factory `admin_password` |
 
 The `guest_password="changeme"` line is intentionally present and is **not**
-flagged — keyhunt suppresses common placeholders to keep signal high.
+flagged — keyhound suppresses common placeholders to keep signal high.
 
 ## Run it
 
 ```sh
-keyhunt scan demos/06-iot-router
-keyhunt scan demos/06-iot-router --show-secrets   # full values during triage
+keyhound scan demos/06-iot-router
+keyhound scan demos/06-iot-router --show-secrets   # full values during triage
 ```
 
 ## How to act

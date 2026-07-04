@@ -1,4 +1,4 @@
-"""Smoke tests for KEYHUNT. Standard library + pytest only, no network."""
+"""Smoke tests for KEYHOUND. Standard library + pytest only, no network."""
 import json
 import os
 import sys
@@ -7,8 +7,8 @@ import pytest
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from keyhunt import TOOL_NAME, TOOL_VERSION, scan_bytes, scan_path  # noqa: E402
-from keyhunt.cli import main  # noqa: E402
+from keyhound import TOOL_NAME, TOOL_VERSION, scan_bytes, scan_path  # noqa: E402
+from keyhound.cli import main  # noqa: E402
 
 DEMO = os.path.join(
     os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
@@ -19,7 +19,7 @@ DEMO = os.path.join(
 
 
 def test_metadata():
-    assert TOOL_NAME == "keyhunt"
+    assert TOOL_NAME == "keyhound"
     assert TOOL_VERSION.count(".") == 2
 
 
@@ -86,7 +86,7 @@ def test_cli_json_output(capsys):
     out = capsys.readouterr().out
     assert rc == 1
     data = json.loads(out)
-    assert data["tool"] == "keyhunt"
+    assert data["tool"] == "keyhound"
     assert data["count"] >= 6
     assert len(data["findings"]) == data["count"]
     # redacted by default: no raw match field, secret is masked
@@ -114,7 +114,7 @@ def test_cli_clean_path_exit_zero(tmp_path, capsys):
 
 
 def test_cli_missing_path_exit_two(capsys):
-    rc = main(["scan", "/no/such/path/keyhunt_xyz"])
+    rc = main(["scan", "/no/such/path/keyhound_xyz"])
     err = capsys.readouterr().err
     assert rc == 2
     assert "not found" in err

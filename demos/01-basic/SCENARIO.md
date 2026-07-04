@@ -19,18 +19,18 @@ The sample file `firmware_dump.txt` contains, mixed in with realistic noise:
 
 ```sh
 # Human-readable
-python -m keyhunt scan demos/01-basic/firmware_dump.txt
+python -m keyhound scan demos/01-basic/firmware_dump.txt
 
 # JSON for CI / jq
-python -m keyhunt scan demos/01-basic/firmware_dump.txt --format json
+python -m keyhound scan demos/01-basic/firmware_dump.txt --format json
 ```
 
 ## Expected result
 
-KEYHUNT reports **6 findings** across `critical` and `high` severities
+KEYHOUND reports **6 findings** across `critical` and `high` severities
 (private key, AWS key, hardcoded password, telnet default login, connection
 URI password, shadow hash). Secrets are redacted by default.
 
 Because secrets were found, the process exits with code **1** - so dropping
-`keyhunt scan` into a CI pipeline will fail the build when creds leak into a
+`keyhound scan` into a CI pipeline will fail the build when creds leak into a
 build artifact. Pass `--show-secrets` to see full values during triage.

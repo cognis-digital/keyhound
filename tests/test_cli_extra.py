@@ -8,8 +8,8 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-import keyhunt.cli as cli  # noqa: E402
-from keyhunt.core import scan, to_json  # noqa: E402
+import keyhound.cli as cli  # noqa: E402
+from keyhound.core import scan, to_json  # noqa: E402
 
 DEMOS = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "demos")
 
@@ -22,7 +22,7 @@ def test_mcp_subcommand_invokes_serve(monkeypatch):
         return 0
 
     # mcp_server.serve is imported lazily inside main(); patch it there.
-    import keyhunt.mcp_server as ms
+    import keyhound.mcp_server as ms
     monkeypatch.setattr(ms, "serve", fake_serve)
     rc = cli.main(["mcp"])
     assert rc == 0
@@ -31,14 +31,14 @@ def test_mcp_subcommand_invokes_serve(monkeypatch):
 
 def test_mcp_server_module_imports():
     # The module must import cleanly now that core exposes scan()/to_json().
-    import keyhunt.mcp_server as ms
+    import keyhound.mcp_server as ms
     assert hasattr(ms, "serve")
 
 
 def test_scan_bridge_is_json_serializable():
     payload = to_json(scan(os.path.join(DEMOS, "01-basic")))
     data = json.loads(payload)
-    assert data["tool"] == "keyhunt"
+    assert data["tool"] == "keyhound"
     assert data["count"] >= 1
 
 

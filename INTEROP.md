@@ -1,8 +1,8 @@
 # Cognis interop map
 
-How **keyhunt** fits the wider Cognis suite — a composable set of defensive, analytical
+How **keyhound** fits the wider Cognis suite — a composable set of defensive, analytical
 tools that all run on your own hardware and speak plain **JSON** (or an OpenAI-compatible
-**`/v1`**). `keyhunt` lives in the **General OSINT / security tool** cluster.
+**`/v1`**). `keyhound` lives in the **General OSINT / security tool** cluster.
 
 ```mermaid
 graph LR
@@ -28,35 +28,35 @@ graph LR
 
 | from | relation | to |
 |---|---|---|
-| `keyhunt` | JSON findings compose with | [`awesome-cognis`](https://github.com/cognis-digital/awesome-cognis) |
-| `keyhunt` | AI add-ins are served `/v1` by | [`edgemesh`](https://github.com/cognis-digital/edgemesh) (your fleet) |
-| `keyhunt` | findings can be narrated / reasoned over by | [`humind`](https://github.com/cognis-digital/humind) -> [`agentlex`](https://github.com/cognis-digital/agentlex) |
-| `keyhunt` | export to intel formats via | [`stixgen`](https://github.com/cognis-digital/stixgen) (STIX) / [`attackmap`](https://github.com/cognis-digital/attackmap) (ATT&CK) |
+| `keyhound` | JSON findings compose with | [`awesome-cognis`](https://github.com/cognis-digital/awesome-cognis) |
+| `keyhound` | AI add-ins are served `/v1` by | [`edgemesh`](https://github.com/cognis-digital/edgemesh) (your fleet) |
+| `keyhound` | findings can be narrated / reasoned over by | [`humind`](https://github.com/cognis-digital/humind) -> [`agentlex`](https://github.com/cognis-digital/agentlex) |
+| `keyhound` | export to intel formats via | [`stixgen`](https://github.com/cognis-digital/stixgen) (STIX) / [`attackmap`](https://github.com/cognis-digital/attackmap) (ATT&CK) |
 
 ## Composition patterns
 
 Everything reads/writes JSON, so tools chain with ordinary pipes; nothing leaves the box.
 
-**1 — chain within the general osint / security tool cluster.** `keyhunt` output feeds the next tool:
+**1 — chain within the general osint / security tool cluster.** `keyhound` output feeds the next tool:
 ```bash
-keyhunt ... --format json > out.json          # this tool's findings (see `keyhunt --help`)
+keyhound ... --format json > out.json          # this tool's findings (see `keyhound --help`)
 awesome-cognis ... < out.json                      # the cluster sibling consumes them
 ```
 
 **2 — enrich with the private-AI backbone.** Point add-ins at one `/v1` for the whole fleet:
 ```bash
 export OPENAI_BASE_URL=http://localhost:8080/v1   # an edgemesh gateway over your fleet
-keyhunt ...                                         # vision / reasoning add-ins light up
+keyhound ...                                         # vision / reasoning add-ins light up
 ```
 
 **3 — export findings to your SOC's formats.**
 ```bash
-keyhunt ... --format json | stixgen from-json > bundle.stix.json   # STIX 2.1
-keyhunt ... --format json | attackmap map > attack.json            # ATT&CK techniques
+keyhound ... --format json | stixgen from-json > bundle.stix.json   # STIX 2.1
+keyhound ... --format json | attackmap map > attack.json            # ATT&CK techniques
 ```
 
-**4 — narrate through cognition + agents.** `humind` extracts salience from `keyhunt`'s
-output; `agentlex` holds it as KB facts and fires Horn rules to escalate. `keyhunt` slots
+**4 — narrate through cognition + agents.** `humind` extracts salience from `keyhound`'s
+output; `agentlex` holds it as KB facts and fires Horn rules to escalate. `keyhound` slots
 into the **Threat-intel export** stack below.
 
 ## Reference stacks

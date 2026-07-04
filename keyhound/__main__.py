@@ -1,4 +1,4 @@
-from keyhunt.cli import main
+from keyhound.cli import main
 import sys
 
 sys.exit(main())

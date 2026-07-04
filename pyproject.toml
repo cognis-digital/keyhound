@@ -3,14 +3,14 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "cognis-keyhunt"
+name = "keyhound"
 version = "1.2.9"
 description = "Scan firmware blobs and filesystem dumps for hardcoded private keys, API tokens, default creds, and weak RSA/ECC material."
 authors = [{name = "Cognis Digital", email = "suite@cognis.digital"}]
 license = {text = "LicenseRef-COCL-1.0"}
 requires-python = ">=3.10"
 readme = "README.md"
-keywords = ["cognis-digital", "cognis-neural-suite", "iot", "keyhunt"]
+keywords = ["cognis-digital", "cognis-neural-suite", "iot", "keyhound"]
 classifiers = [
     "Development Status :: 4 - Beta",
     "License :: Other/Proprietary License",
@@ -26,20 +26,20 @@ dev = ["pytest>=8.0"]
 
 [project.urls]
 Homepage = "https://cognis.digital"
-Repository = "https://github.com/cognis-digital/keyhunt"
+Repository = "https://github.com/cognis-digital/keyhound"
 
 [project.scripts]
-"keyhunt-emit" = "keyhunt.connect:emit_main"
-keyhunt = "keyhunt.cli:main"
+"keyhound-emit" = "keyhound.connect:emit_main"
+keyhound = "keyhound.cli:main"
 
 [tool.hatch.build.targets.wheel]
-packages = ["keyhunt"]
+packages = ["keyhound"]
 # Ship the bundled offline data so the tool works the moment it's installed:
 # the 262k-record OSV vuln DB, the edge data-feed catalog, and the VERSION pin.
 artifacts = [
-    "keyhunt/cognis_vulndb.jsonl.gz",
-    "keyhunt/data_feeds_2026.json",
-    "keyhunt/VERSION",
+    "keyhound/cognis_vulndb.jsonl.gz",
+    "keyhound/data_feeds_2026.json",
+    "keyhound/VERSION",
 ]
 
 [tool.hatch.metadata]

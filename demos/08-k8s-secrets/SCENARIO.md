@@ -8,7 +8,7 @@ into the chart to "just get it working," and it was never removed.
 
 ## What to expect
 
-`keyhunt` reports **3 findings**:
+`keyhound` reports **3 findings**:
 
 | Detector | Severity | What |
 |---|---|---|
@@ -22,10 +22,10 @@ processor-key match in your own scans as live and rotate it.
 ## Run it
 
 ```sh
-keyhunt scan demos/08-k8s-secrets
+keyhound scan demos/08-k8s-secrets
 
 # Only fail CI on high+; medium api-key findings are reported but don't gate
-keyhunt scan demos/08-k8s-secrets --fail-on high
+keyhound scan demos/08-k8s-secrets --fail-on high
 ```
 
 ## How to act

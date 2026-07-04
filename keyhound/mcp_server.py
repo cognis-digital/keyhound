@@ -1,20 +1,20 @@
-"""KEYHUNT MCP server — exposes scan() as an MCP tool for Cognis.Studio."""
+"""KEYHOUND MCP server — exposes scan() as an MCP tool for Cognis.Studio."""
 from __future__ import annotations
-from keyhunt.core import scan, to_json
+from keyhound.core import scan, to_json
 
 def serve() -> int:
     """Start an MCP stdio server. Requires the optional 'mcp' extra:
-        pip install "cognis-keyhunt[mcp]"
+        pip install "keyhound[mcp]"
     """
     try:
         from mcp.server.fastmcp import FastMCP
     except Exception:
-        print("Install the MCP extra: pip install 'cognis-keyhunt[mcp]'")
+        print("Install the MCP extra: pip install 'keyhound[mcp]'")
         return 1
-    app = FastMCP("keyhunt")
+    app = FastMCP("keyhound")
 
     @app.tool()
-    def keyhunt_scan(target: str) -> str:
+    def keyhound_scan(target: str) -> str:
         """Scan firmware blobs and filesystem dumps for hardcoded private keys, API tokens, default creds, and weak RSA/ECC material.. Returns JSON findings."""
         return to_json(scan(target))
 

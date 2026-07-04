@@ -1,6 +1,6 @@
-$ keyhunt-emit --help
+$ keyhound-emit --help
 
-usage: keyhunt [-h] [--version] [--format {table,json,sarif}]
+usage: keyhound [-h] [--version] [--format {table,json,sarif}]
                {scan,vulndb,feeds,mcp} ...
 
 Scan firmware / filesystem dumps for hardcoded keys, tokens, and default credentials.
@@ -12,7 +12,7 @@ positional arguments:
                         262k records)
     feeds               list/refresh the keyless edge data-feed catalog
                         (offline-capable)
-    mcp                 run keyhunt as an MCP stdio server (requires the 'mcp'
+    mcp                 run keyhound as an MCP stdio server (requires the 'mcp'
                         extra)
 
 options:

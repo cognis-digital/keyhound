@@ -1,14 +1,14 @@
-"""KEYHUNT command-line interface.
+"""KEYHOUND command-line interface.
 
 Examples:
   # Scan an extracted firmware tree, human-readable table
-  keyhunt scan /tmp/firmware_extracted
+  keyhound scan /tmp/firmware_extracted
 
   # Emit JSON for CI / piping into jq
-  keyhunt scan ./dump --format json | jq '.findings[] | select(.severity=="critical")'
+  keyhound scan ./dump --format json | jq '.findings[] | select(.severity=="critical")'
 
   # Show full (unredacted) secrets - use with care
-  keyhunt scan ./dump --show-secrets
+  keyhound scan ./dump --show-secrets
 
 Exit codes:
   0  no findings
@@ -126,9 +126,9 @@ def _build_parser() -> argparse.ArgumentParser:
     # --- MCP server (for AI agents) ---------------------------------------
     sub.add_parser(
         "mcp",
-        help="run keyhunt as an MCP stdio server (requires the 'mcp' extra)",
-        description="Expose keyhunt's scan() as an MCP tool for Claude Desktop, "
-        "Cursor, or Cognis.Studio. Install with: pip install 'cognis-keyhunt[mcp]'.",
+        help="run keyhound as an MCP stdio server (requires the 'mcp' extra)",
+        description="Expose keyhound's scan() as an MCP tool for Claude Desktop, "
+        "Cursor, or Cognis.Studio. Install with: pip install 'keyhound[mcp]'.",
     )
     return parser
 
@@ -172,7 +172,7 @@ def _render_json(findings: List[Finding], show_secrets: bool) -> str:
     return json.dumps(payload, indent=2)
 
 
-# SARIF 2.1.0 maps keyhunt severities onto the spec's "level" enum.
+# SARIF 2.1.0 maps keyhound severities onto the spec's "level" enum.
 _SARIF_LEVEL = {
     "critical": "error",
     "high": "error",
@@ -199,7 +199,7 @@ def _render_sarif(findings: List[Finding], show_secrets: bool) -> str:
                 "defaultConfiguration": {
                     "level": _SARIF_LEVEL.get(f.severity, "warning")
                 },
-                "properties": {"keyhunt-severity": f.severity, "tags": ["security"]},
+                "properties": {"keyhound-severity": f.severity, "tags": ["security"]},
             }
         value = f.secret if show_secrets else f.redacted()
         results.append(
@@ -207,7 +207,7 @@ def _render_sarif(findings: List[Finding], show_secrets: bool) -> str:
                 "ruleId": f.detector,
                 "level": _SARIF_LEVEL.get(f.severity, "warning"),
                 "message": {"text": f"{f.description} (secret: {value})"},
-                "properties": {"keyhunt-severity": f.severity},
+                "properties": {"keyhound-severity": f.severity},
                 "locations": [
                     {
                         "physicalLocation": {
@@ -230,7 +230,7 @@ def _render_sarif(findings: List[Finding], show_secrets: bool) -> str:
                     "driver": {
                         "name": TOOL_NAME,
                         "version": TOOL_VERSION,
-                        "informationUri": "https://github.com/cognis-digital/keyhunt",
+                        "informationUri": "https://github.com/cognis-digital/keyhound",
                         "rules": list(rules.values()),
                     }
                 },
@@ -350,8 +350,8 @@ def _run_feeds(args) -> int:
             tag = f"[{age:.1f}h old]" if age is not None else "[uncached]"
             print(f"  {f['id']:30} {f.get('domain', ''):14} {tag:12} "
                   f"{f.get('name', f.get('description', ''))}")
-        print(f"\n{len(feeds)} feed(s).  Refresh: keyhunt feeds update <id> ; "
-              f"offline serve: keyhunt feeds get <id> --offline")
+        print(f"\n{len(feeds)} feed(s).  Refresh: keyhound feeds update <id> ; "
+              f"offline serve: keyhound feeds get <id> --offline")
         return 0
     if action == "update":
         if not args.args:

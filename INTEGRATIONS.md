@@ -1,6 +1,6 @@
 # Integrations
 
-**keyhunt** plugs into your stack through [`cognis-connect`](https://github.com/cognis-digital/cognis-connect),
+**keyhound** plugs into your stack through [`cognis-connect`](https://github.com/cognis-digital/cognis-connect),
 the suite's integration SDK. It maps any tool's JSON into a canonical **Finding** and
 forwards it to the platforms that fit the **General OSINT / security tool** domain.
 
@@ -10,13 +10,13 @@ pip install "git+https://github.com/cognis-digital/cognis-connect.git"
 
 ## Forward findings to a platform
 
-Once `keyhunt` emits JSON findings, pipe them straight to a destination — `--dry-run`
+Once `keyhound` emits JSON findings, pipe them straight to a destination — `--dry-run`
 previews the exact request without sending:
 
 ```bash
-keyhunt ... --format json | cognis-connect emit --to stix   # STIX 2.1 bundle
-keyhunt ... --format json | cognis-connect emit --to slack --url $URL --token $TOK   # Slack
-keyhunt ... --format json | cognis-connect emit --to webhook --url $URL --token $TOK   # generic webhook
+keyhound ... --format json | cognis-connect emit --to stix   # STIX 2.1 bundle
+keyhound ... --format json | cognis-connect emit --to slack --url $URL --token $TOK   # Slack
+keyhound ... --format json | cognis-connect emit --to webhook --url $URL --token $TOK   # generic webhook
 ```
 
 Recommended for this domain: **stix, slack, webhook**. The full set is
@@ -25,11 +25,11 @@ Recommended for this domain: **stix, slack, webhook**. The full set is
 ## From Python
 
 `normalize()` maps any record (field/indicator aliases handled) into a `Finding`, so this
-works whatever `keyhunt` outputs:
+works whatever `keyhound` outputs:
 
 ```python
 from cognis_connect import normalize, stix
-findings = [normalize(rec, source="keyhunt") for rec in records]   # records = your JSON output
+findings = [normalize(rec, source="keyhound") for rec in records]   # records = your JSON output
 print(stix.to_bundle(findings))
 ```
 

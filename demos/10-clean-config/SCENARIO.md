@@ -9,17 +9,17 @@ no actual literal secret present.
 
 ## What to expect
 
-`keyhunt` reports **0 findings** and exits **0**.
+`keyhound` reports **0 findings** and exits **0**.
 
 This demo is the control case: a secret scanner that cries wolf on good hygiene
-is one people turn off. keyhunt suppresses common placeholders and does not
+is one people turn off. keyhound suppresses common placeholders and does not
 treat environment indirection (`${AWS_ACCESS_KEY_ID}`) as a literal value.
 
 ## Run it
 
 ```sh
-keyhunt scan demos/10-clean-config            # prints "No secrets found.", exits 0
-keyhunt scan demos/10-clean-config --format json
+keyhound scan demos/10-clean-config            # prints "No secrets found.", exits 0
+keyhound scan demos/10-clean-config --format json
 echo "exit code: $?"                          # 0 — safe to gate CI on
 ```
 

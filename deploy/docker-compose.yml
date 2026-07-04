@@ -1,7 +1,7 @@
 services:
-  keyhunt:
+  keyhound:
     build: .
-    image: cognis/keyhunt:local
+    image: cognis/keyhound:local
     restart: unless-stopped
     ports: ["8000:8000"]
     environment:

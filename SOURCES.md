@@ -1,17 +1,17 @@
 # Sources
 
-## Data behind keyhunt
+## Data behind keyhound
 
-keyhunt carries two real, attributable offline datasets. No intelligence is
+keyhound carries two real, attributable offline datasets. No intelligence is
 fabricated; every record traces to a public upstream.
 
-### Bundled vulnerability database (`keyhunt/cognis_vulndb.jsonl.gz`)
+### Bundled vulnerability database (`keyhound/cognis_vulndb.jsonl.gz`)
 
 - **OSV.dev** (<https://osv.dev>) — consolidated open-source vulnerability data
   across PyPI, npm, Go, Maven, RubyGems, crates.io, and NuGet. 262,351 records
   with CVE/GHSA aliases, severity, affected packages, and dates.
 
-### Edge data-feed catalog (`keyhunt/data_feeds_2026.json`)
+### Edge data-feed catalog (`keyhound/data_feeds_2026.json`)
 
 Real, mostly-keyless feeds fetched on demand (never automatically) and cached
 for offline / air-gap use:

@@ -1,4 +1,4 @@
-# KEYHUNT — Roadmap
+# KEYHOUND — Roadmap
 
 ## Now (v0.1.x)
 - Stable `scan` CLI (table / JSON), CI fail-gate, MCP server, demo scenarios.

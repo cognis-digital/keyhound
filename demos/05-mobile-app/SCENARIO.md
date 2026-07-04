@@ -9,7 +9,7 @@ It does not — anyone can decompile a shipped APK.
 
 ## What to expect
 
-`keyhunt` reports **3 findings** across the two extracted artifacts:
+`keyhound` reports **3 findings** across the two extracted artifacts:
 
 | File | Detector | Severity |
 |---|---|---|
@@ -23,12 +23,12 @@ valid `AIza…` key shape.
 ## Run it
 
 ```sh
-keyhunt scan demos/05-mobile-app
-keyhunt scan demos/05-mobile-app --format json | jq '.findings[].detector'
+keyhound scan demos/05-mobile-app
+keyhound scan demos/05-mobile-app --format json | jq '.findings[].detector'
 ```
 
 ## How to act
 
 Move the API key behind a server-side proxy with key restrictions, stop
 embedding long-lived JWTs in resources, and never ship basic-auth fallback
-URIs in client code. Add `keyhunt scan` to the mobile release pipeline.
+URIs in client code. Add `keyhound scan` to the mobile release pipeline.

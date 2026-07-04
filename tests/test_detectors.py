@@ -1,4 +1,4 @@
-"""Per-detector unit tests for keyhunt's core scanning engine.
+"""Per-detector unit tests for keyhound's core scanning engine.
 
 Standard library + pytest only, no network. Each detector is exercised on a
 minimal positive case, a redaction check, and (where relevant) a negative case
@@ -10,7 +10,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from keyhunt.core import (  # noqa: E402
+from keyhound.core import (  # noqa: E402
     DETECTORS,
     Finding,
     _shannon_entropy,
@@ -273,7 +273,7 @@ DEMOS = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 def test_scan_api_shape():
     res = scan(os.path.join(DEMOS, "01-basic"))
-    assert res["tool"] == "keyhunt"
+    assert res["tool"] == "keyhound"
     assert res["count"] >= 6
     assert "severity_counts" in res
     assert isinstance(res["findings"], list)
@@ -296,7 +296,7 @@ def test_to_json_roundtrips():
     import json
     res = scan(os.path.join(DEMOS, "02-clean"))
     parsed = json.loads(to_json(res))
-    assert parsed["tool"] == "keyhunt"
+    assert parsed["tool"] == "keyhound"
 
 
 def test_scan_clean_dir_counts_zero():

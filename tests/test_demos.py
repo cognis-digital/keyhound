@@ -1,14 +1,14 @@
 """Verify every demos/<NN-*> scenario actually fires as its SCENARIO.md claims.
 
 Standard library + pytest only, no network. Each demo is a realistic input in
-keyhunt's real input format; this test is the contract that they keep working.
+keyhound's real input format; this test is the contract that they keep working.
 """
 import os
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from keyhunt import scan_path  # noqa: E402
+from keyhound import scan_path  # noqa: E402
 
 DEMOS = os.path.join(
     os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "demos"

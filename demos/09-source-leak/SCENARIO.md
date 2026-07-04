@@ -9,7 +9,7 @@ token, so leaking it enables session forgery.
 
 ## What to expect
 
-`keyhunt` reports **3 findings**:
+`keyhound` reports **3 findings**:
 
 | Detector | Severity | What |
 |---|---|---|
@@ -20,13 +20,13 @@ token, so leaking it enables session forgery.
 ## Run it
 
 ```sh
-keyhunt scan demos/09-source-leak
-keyhunt scan demos/09-source-leak --severity high   # only high+ in this view
+keyhound scan demos/09-source-leak
+keyhound scan demos/09-source-leak --severity high   # only high+ in this view
 ```
 
 ## How to act
 
 Rotate the `SECRET_KEY` (forces re-login for all users, which is the point),
 rotate the SMTP and Sentry credentials, and load all of them from the
-environment. Add `keyhunt scan .` as a pre-commit hook so this never lands
+environment. Add `keyhound scan .` as a pre-commit hook so this never lands
 again.

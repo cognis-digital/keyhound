@@ -1,13 +1,13 @@
-# Ports of keyhunt
+# Ports of keyhound
 
-The same secret-scanning logic, ported across languages so you can drop keyhunt
+The same secret-scanning logic, ported across languages so you can drop keyhound
 into any stack or ship a single static binary. **Every port mirrors the core
 detector set, emits the same JSON shape, redacts secrets by default, and uses
 the same CI-friendly exit codes** (`0` clean, `1` secrets found, `2` usage error).
 
 | Language | Path | Run | Test |
 |---|---|---|---|
-| Python (reference) | [`../keyhunt/`](../keyhunt/) | `keyhunt scan .` | `pytest` |
+| Python (reference) | [`../keyhound/`](../keyhound/) | `keyhound scan .` | `pytest` |
 | Node / JavaScript | [`javascript/`](javascript/) | `node ports/javascript/index.js .` | `node --test` |
 | Go | [`go/`](go/) | `cd ports/go && go run . ..` | `go test ./...` |
 | Rust | [`rust/`](rust/) | `cd ports/rust && cargo run -- ..` | `cargo test` |
@@ -16,7 +16,7 @@ the same CI-friendly exit codes** (`0` clean, `1` secrets found, `2` usage error
 
 ```json
 {
-  "tool": "keyhunt",
+  "tool": "keyhound",
   "version": "1.2.9",
   "count": 1,
   "findings": [

@@ -1,23 +1,23 @@
 <a name="top"></a>
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=rect&color=0:6b46c1,100:2b6cb0&height=120&section=header&text=KEYHUNT&fontSize=48&fontColor=ffffff&fontAlignY=58" width="100%" alt="KEYHUNT"/>
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0:6b46c1,100:2b6cb0&height=120&section=header&text=KEYHOUND&fontSize=48&fontColor=ffffff&fontAlignY=58" width="100%" alt="KEYHOUND"/>
 
-# KEYHUNT
+# KEYHOUND
 
 ### Scan firmware blobs and filesystem dumps for hardcoded private keys, API tokens, default creds, and weak RSA/ECC material.
 
 <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=18&duration=3500&pause=1000&color=6B46C1&center=true&vCenter=true&width=720&lines=Scan+firmware+blobs+and+filesystem+dumps+for+hardcoded+priva;Self-hostable+%C2%B7+MCP-native+%C2%B7+CI-ready+%C2%B7+polyglot" width="720"/>
 
-[![PyPI](https://img.shields.io/pypi/v/cognis-keyhunt.svg?color=6b46c1)](https://pypi.org/project/cognis-keyhunt/) [![CI](https://github.com/cognis-digital/keyhunt/actions/workflows/ci.yml/badge.svg)](https://github.com/cognis-digital/keyhunt/actions) [![License: COCL 1.0](https://img.shields.io/badge/License-COCL%201.0-2b6cb0.svg)](LICENSE) [![Suite](https://img.shields.io/badge/Cognis-Neural%20Suite-6b46c1.svg)](https://github.com/cognis-digital)
+[![PyPI](https://img.shields.io/pypi/v/keyhound.svg?color=6b46c1)](https://pypi.org/project/keyhound/) [![CI](https://github.com/cognis-digital/keyhound/actions/workflows/ci.yml/badge.svg)](https://github.com/cognis-digital/keyhound/actions) [![License: COCL 1.0](https://img.shields.io/badge/License-COCL%201.0-2b6cb0.svg)](LICENSE) [![Suite](https://img.shields.io/badge/Cognis-Neural%20Suite-6b46c1.svg)](https://github.com/cognis-digital)
 
 *IoT / OT / Embedded — firmware, buses, and device security.*
 
 </div>
 
 ```bash
-pip install cognis-keyhunt
-keyhunt scan .            # → prioritized findings in seconds
+pip install keyhound
+keyhound scan .            # → prioritized findings in seconds
 ```
 
 
@@ -27,13 +27,13 @@ keyhunt scan .            # → prioritized findings in seconds
 Real, reproducible output from the tool — runs offline:
 
 ```console
-$ keyhunt-emit --version
-keyhunt 1.2.9
+$ keyhound-emit --version
+keyhound 1.2.9
 ```
 
 ```console
-$ keyhunt-emit --help
-usage: keyhunt [-h] [--version] [--format {table,json,sarif}]
+$ keyhound-emit --help
+usage: keyhound [-h] [--version] [--format {table,json,sarif}]
                {scan,vulndb,feeds,mcp} ...
 
 Scan firmware / filesystem dumps for hardcoded keys, tokens, and default credentials.
@@ -45,7 +45,7 @@ positional arguments:
                         262k records)
     feeds               list/refresh the keyless edge data-feed catalog
                         (offline-capable)
-    mcp                 run keyhunt as an MCP stdio server (requires the 'mcp'
+    mcp                 run keyhound as an MCP stdio server (requires the 'mcp'
                         extra)
 
 options:
@@ -57,7 +57,7 @@ options:
 Point it at a router firmware extraction and get hardcoded creds. Exit code 1 means secrets were found (CI-friendly).
 ```
 
-> Blocks above are real `keyhunt` output — reproduce them from a clone.
+> Blocks above are real `keyhound` output — reproduce them from a clone.
 
 **Sample result format** _(illustrative values — run on your own data for real findings):_
 
@@ -105,39 +105,39 @@ Point it at a router firmware extraction and get hardcoded creds. Exit code 1 me
 1. **Install** the scanner:
 
    ```bash
-   pip install cognis-keyhunt
+   pip install keyhound
    ```
 
 2. **Scan a tree** (e.g. an extracted firmware image or filesystem dump) for hardcoded keys, tokens, and default creds:
 
    ```bash
-   keyhunt scan /tmp/firmware_extracted
+   keyhound scan /tmp/firmware_extracted
    ```
 
 3. **Filter by severity** and emit JSON for CI or `jq`:
 
    ```bash
-   keyhunt scan ./dump --severity high --format json | jq '.findings[] | select(.severity=="critical")'
+   keyhound scan ./dump --severity high --format json | jq '.findings[] | select(.severity=="critical")'
    ```
 
 4. **Read the result.** Secrets are redacted by default; pass `--show-secrets` to print full values. Exit code `0` = no findings, `1` = one or more secrets found, `2` = usage/runtime error.
 
-5. **Gate a build.** keyhunt's exit code makes it a drop-in CI check:
+5. **Gate a build.** keyhound's exit code makes it a drop-in CI check:
 
    ```bash
-   keyhunt scan ./build --severity high || { echo 'hardcoded secrets found'; exit 1; }
+   keyhound scan ./build --severity high || { echo 'hardcoded secrets found'; exit 1; }
    ```
 
 ## Contents
 
-- [Why keyhunt?](#why) · [Features](#features) · [Quick start](#quick-start) · [Example](#example) · [Demos](#demos) · [Output formats](#output-formats) · [Vulnerability database](#vulndb) · [Edge data feeds](#feeds) · [Scope & safety](#scope) · [Architecture](#architecture) · [AI stack](#ai-stack) · [How it compares](#how-it-compares) · [Integrations](#integrations) · [Install anywhere](#install-anywhere) · [Related](#related) · [Contributing](#contributing)
+- [Why keyhound?](#why) · [Features](#features) · [Quick start](#quick-start) · [Example](#example) · [Demos](#demos) · [Output formats](#output-formats) · [Vulnerability database](#vulndb) · [Edge data feeds](#feeds) · [Scope & safety](#scope) · [Architecture](#architecture) · [AI stack](#ai-stack) · [How it compares](#how-it-compares) · [Integrations](#integrations) · [Install anywhere](#install-anywhere) · [Related](#related) · [Contributing](#contributing)
 
 <a name="why"></a>
-## Why keyhunt?
+## Why keyhound?
 
 Instant gratification — point at any router firmware and get 'hardcoded root SSH key shared across 2M devices.' Universal hardcoded-cred findings are reliably front-page.
 
-`keyhunt` is single-purpose, scriptable, and self-hostable: point it at a target, get prioritized results in the format your workflow already speaks (table · JSON · SARIF), gate CI on it, and let agents drive it over MCP.
+`keyhound` is single-purpose, scriptable, and self-hostable: point it at a target, get prioritized results in the format your workflow already speaks (table · JSON · SARIF), gate CI on it, and let agents drive it over MCP.
 
 <div align="right"><a href="#top">↑ back to top</a></div>
 
@@ -150,10 +150,10 @@ Instant gratification — point at any router firmware and get 'hardcoded root S
 - ✅ Output as `table`, `json`, or **SARIF 2.1.0**; `--out FILE`, `--severity`, and `--fail-on` for CI gating
 - ✅ 9 real-world [demo scenarios](#demos), each verified by a test
 - ✅ Runs on Linux/macOS/Windows · Docker · devcontainer
-- ✅ **Passive & offline by design** — keyhunt only ever *reads* files; it makes no network connections and runs air-gapped
+- ✅ **Passive & offline by design** — keyhound only ever *reads* files; it makes no network connections and runs air-gapped
 - ✅ Real ports in **Python, Node/JavaScript, Go, and Rust** (`ports/`) — each mirrors the core detector set, emits the same JSON shape, and ships with a test suite + CI
-- ✅ Bundled **262,351-record offline OSV vulnerability database** (`keyhunt vulndb`) — no network, no key (see [Vulnerability database](#vulndb))
-- ✅ Keyless **edge / air-gap data-feed ingester** (`keyhunt feeds`) for CISA KEV · EPSS · OSV · NVD · MITRE ATT&CK · NIST OSCAL · abuse.ch (see [Edge data feeds](#feeds))
+- ✅ Bundled **262,351-record offline OSV vulnerability database** (`keyhound vulndb`) — no network, no key (see [Vulnerability database](#vulndb))
+- ✅ Keyless **edge / air-gap data-feed ingester** (`keyhound feeds`) for CISA KEV · EPSS · OSV · NVD · MITRE ATT&CK · NIST OSCAL · abuse.ch (see [Edge data feeds](#feeds))
 
 <div align="right"><a href="#top">↑ back to top</a></div>
 
@@ -161,11 +161,11 @@ Instant gratification — point at any router firmware and get 'hardcoded root S
 ## Quick start
 
 ```bash
-pip install cognis-keyhunt
-keyhunt --version
-keyhunt scan .                       # scan current project
-keyhunt scan . --format json         # machine-readable
-keyhunt scan . --fail-on high        # CI gate (non-zero exit)
+pip install keyhound
+keyhound --version
+keyhound scan .                       # scan current project
+keyhound scan . --format json         # machine-readable
+keyhound scan . --fail-on high        # CI gate (non-zero exit)
 ```
 
 <div align="right"><a href="#top">↑ back to top</a></div>
@@ -174,7 +174,7 @@ keyhunt scan . --fail-on high        # CI gate (non-zero exit)
 ## Example
 
 ```text
-$ keyhunt scan demos/06-iot-router
+$ keyhound scan demos/06-iot-router
 Found 4 secret(s): 1 critical, 3 high
 
 [CRITICAL] private-key              demos/06-iot-router/rootfs_dump.txt:4:1
@@ -197,8 +197,8 @@ Found 4 secret(s): 1 critical, 3 high
 ## Demos — real-world scenarios
 
 Every folder in [`demos/`](demos/) is a self-contained scenario: a realistic
-input in keyhunt's real input format plus a `SCENARIO.md` that explains where
-the data came from, what keyhunt reports, and how to remediate. Each one is
+input in keyhound's real input format plus a `SCENARIO.md` that explains where
+the data came from, what keyhound reports, and how to remediate. Each one is
 covered by a test, so the findings stay reproducible.
 
 | Demo | Scenario | Fires |
@@ -214,8 +214,8 @@ covered by a test, so the findings stay reproducible.
 | [`11-backup-shadow`](demos/11-backup-shadow/) | Misplaced `/etc` backup tarball | EC TLS private key, three `/etc/shadow` hashes |
 
 ```bash
-keyhunt scan demos/06-iot-router            # see the firmware findings
-keyhunt scan demos/10-clean-config          # confirm a clean tree exits 0
+keyhound scan demos/06-iot-router            # see the firmware findings
+keyhound scan demos/10-clean-config          # confirm a clean tree exits 0
 ```
 
 <div align="right"><a href="#top">↑ back to top</a></div>
@@ -224,11 +224,11 @@ keyhunt scan demos/10-clean-config          # confirm a clean tree exits 0
 ## Output formats & CI gating
 
 ```bash
-keyhunt scan ./dump                                  # table (default)
-keyhunt scan ./dump --format json                    # machine-readable
-keyhunt scan ./dump --format sarif --out keyhunt.sarif   # SARIF 2.1.0 for code-scanning
-keyhunt scan ./dump --severity high                  # only report high+ findings
-keyhunt scan ./dump --fail-on high                   # exit 1 only on high+ (CI gate)
+keyhound scan ./dump                                  # table (default)
+keyhound scan ./dump --format json                    # machine-readable
+keyhound scan ./dump --format sarif --out keyhound.sarif   # SARIF 2.1.0 for code-scanning
+keyhound scan ./dump --severity high                  # only report high+ findings
+keyhound scan ./dump --fail-on high                   # exit 1 only on high+ (CI gate)
 ```
 
 The SARIF output is a valid 2.1.0 log (one rule per detector, one result per
@@ -242,21 +242,21 @@ of stdout.
 <a name="vulndb"></a>
 ## Vulnerability database — bundled, offline, 262k records
 
-keyhunt ships a consolidated **OSV corpus** at `keyhunt/cognis_vulndb.jsonl.gz`:
+keyhound ships a consolidated **OSV corpus** at `keyhound/cognis_vulndb.jsonl.gz`:
 **262,351 real vulnerabilities** across PyPI, npm, Go, Maven, RubyGems,
 crates.io, and NuGet, each with `id`, CVE/GHSA aliases, ecosystem, summary,
 severity, affected packages, and publish/modify dates. The loader is pure
 standard library, so it works **fully offline / air-gapped — no network, no key**.
 
 ```bash
-keyhunt vulndb --count                       # -> 262351
-keyhunt vulndb CVE-2021-44228                 # Log4Shell record (JSON)
-keyhunt vulndb --package log4j-core           # all vulns affecting a package
-keyhunt vulndb --search "deserialization"     # summary substring search
+keyhound vulndb --count                       # -> 262351
+keyhound vulndb CVE-2021-44228                 # Log4Shell record (JSON)
+keyhound vulndb --package log4j-core           # all vulns affecting a package
+keyhound vulndb --search "deserialization"     # summary substring search
 ```
 
 ```text
-$ keyhunt vulndb CVE-2021-44228
+$ keyhound vulndb CVE-2021-44228
 {
   "query": "CVE-2021-44228",
   "count": 1,
@@ -276,7 +276,7 @@ $ keyhunt vulndb CVE-2021-44228
 From Python:
 
 ```python
-from keyhunt.vulndb_local import VulnDB
+from keyhound.vulndb_local import VulnDB
 db = VulnDB()                       # lazy-loads the bundled gz
 db.count()                          # 262351
 db.by_cve("CVE-2021-44228")         # list of records
@@ -289,7 +289,7 @@ db.by_package("log4j-core")         # records affecting that package
 ## Edge data feeds — keyless, offline-capable refresh
 
 For deployments that want fresher intelligence than the bundled snapshot,
-keyhunt includes a stdlib-only ingester (`keyhunt feeds`) over a catalog of
+keyhound includes a stdlib-only ingester (`keyhound feeds`) over a catalog of
 **real, mostly-keyless feeds** — CISA KEV, FIRST EPSS, OSV, NVD, MITRE ATT&CK
 (STIX), NIST SP 800-53 (OSCAL), and abuse.ch (Feodo/ThreatFox/URLhaus/SSLBL).
 
@@ -302,15 +302,15 @@ It is built for the edge / air gap:
   disconnected enclave.
 
 ```bash
-keyhunt feeds list                              # show the catalog + cache age
-keyhunt feeds list --domain vuln                # filter by domain
-keyhunt feeds update cisa-kev epss              # fetch + cache (online)
-keyhunt feeds get cisa-kev --offline            # serve from cache, no network
-keyhunt feeds snapshot-export feeds.tar.gz      # for air-gap transfer
-keyhunt feeds snapshot-import feeds.tar.gz      # restore inside the enclave
+keyhound feeds list                              # show the catalog + cache age
+keyhound feeds list --domain vuln                # filter by domain
+keyhound feeds update cisa-kev epss              # fetch + cache (online)
+keyhound feeds get cisa-kev --offline            # serve from cache, no network
+keyhound feeds snapshot-export feeds.tar.gz      # for air-gap transfer
+keyhound feeds snapshot-import feeds.tar.gz      # restore inside the enclave
 ```
 
-The catalog lives at `keyhunt/data_feeds_2026.json`; the cache directory is
+The catalog lives at `keyhound/data_feeds_2026.json`; the cache directory is
 `COGNIS_FEEDS_CACHE` (default `~/.cache/cognis-feeds`). All feeds are
 defensive / authorized-use intelligence only.
 
@@ -319,9 +319,9 @@ defensive / authorized-use intelligence only.
 <a name="scope"></a>
 ## Scope, authorization & safety
 
-keyhunt is a **defensive, authorized-use** tool.
+keyhound is a **defensive, authorized-use** tool.
 
-- **Passive and offline.** keyhunt only *reads* files you point it at — extracted
+- **Passive and offline.** keyhound only *reads* files you point it at — extracted
   firmware, filesystem dumps, config trees, source. It performs **no active
   scanning, no network probing, and no exploitation**. There is nothing to gate
   behind a `--authorized` flag because the tool never reaches out.
@@ -342,7 +342,7 @@ keyhunt is a **defensive, authorized-use** tool.
 
 ```mermaid
 flowchart LR
-  IN[target / manifest] --> P[keyhunt<br/>checks + rules]
+  IN[target / manifest] --> P[keyhound<br/>checks + rules]
   P --> OUT[findings (JSON / SARIF)]
 ```
 
@@ -351,10 +351,10 @@ flowchart LR
 <a name="ai-stack"></a>
 ## Use it from any AI stack
 
-`keyhunt` is interoperable with every popular way of using AI:
+`keyhound` is interoperable with every popular way of using AI:
 
-- **MCP server** — `keyhunt mcp` (Claude Desktop, Cursor, Cognis.Studio, [uncensored-fleet](https://github.com/cognis-digital/uncensored-fleet))
-- **OpenAI-compatible / JSON** — pipe `keyhunt scan . --format json` into any agent or LLM
+- **MCP server** — `keyhound mcp` (Claude Desktop, Cursor, Cognis.Studio, [uncensored-fleet](https://github.com/cognis-digital/uncensored-fleet))
+- **OpenAI-compatible / JSON** — pipe `keyhound scan . --format json` into any agent or LLM
 - **LangChain · CrewAI · AutoGen · LlamaIndex** — wrap the CLI/JSON as a tool in one line
 - **CI / scripts** — exit codes + SARIF for non-AI pipelines
 
@@ -363,7 +363,7 @@ flowchart LR
 <a name="how-it-compares"></a>
 ## How it compares
 
-| | **Cognis keyhunt** | trufflehog + EAPOL |
+| | **Cognis keyhound** | trufflehog + EAPOL |
 |---|:---:|:---:|
 | Self-hostable, no account | ✅ | varies |
 | Single command, zero config | ✅ | ⚠️ |
@@ -379,7 +379,7 @@ flowchart LR
 <a name="integrations"></a>
 ## Integrations
 
-Pipes into your stack: **SARIF** for code-scanning, **JSON** for anything, an **MCP server** (`keyhunt mcp`) for AI agents, and a webhook forwarder for SIEM/Slack/Jira. See [`docs/INTEGRATIONS.md`](docs/INTEGRATIONS.md).
+Pipes into your stack: **SARIF** for code-scanning, **JSON** for anything, an **MCP server** (`keyhound mcp`) for AI agents, and a webhook forwarder for SIEM/Slack/Jira. See [`docs/INTEGRATIONS.md`](docs/INTEGRATIONS.md).
 
 <div align="right"><a href="#top">↑ back to top</a></div>
 
@@ -387,18 +387,18 @@ Pipes into your stack: **SARIF** for code-scanning, **JSON** for anything, an **
 ## Install — every way, every platform
 
 ```bash
-pip install "git+https://github.com/cognis-digital/keyhunt.git"    # pip (works today)
-pipx install "git+https://github.com/cognis-digital/keyhunt.git"   # isolated CLI
-uv tool install "git+https://github.com/cognis-digital/keyhunt.git" # uv
-pip install cognis-keyhunt                                          # PyPI (when published)
-docker run --rm ghcr.io/cognis-digital/keyhunt:latest --help        # Docker
-brew install cognis-digital/tap/keyhunt                             # Homebrew tap
-curl -fsSL https://raw.githubusercontent.com/cognis-digital/keyhunt/main/install.sh | sh
+pip install "git+https://github.com/cognis-digital/keyhound.git"    # pip (works today)
+pipx install "git+https://github.com/cognis-digital/keyhound.git"   # isolated CLI
+uv tool install "git+https://github.com/cognis-digital/keyhound.git" # uv
+pip install keyhound                                          # PyPI (when published)
+docker run --rm ghcr.io/cognis-digital/keyhound:latest --help        # Docker
+brew install cognis-digital/tap/keyhound                             # Homebrew tap
+curl -fsSL https://raw.githubusercontent.com/cognis-digital/keyhound/main/install.sh | sh
 ```
 
 | Linux | macOS | Windows | Docker | Cloud |
 |---|---|---|---|---|
-| `scripts/setup-linux.sh` | `scripts/setup-macos.sh` | `scripts/setup-windows.ps1` | `docker run ghcr.io/cognis-digital/keyhunt` | [DEPLOY.md](docs/DEPLOY.md) (AWS/Azure/GCP/k8s) |
+| `scripts/setup-linux.sh` | `scripts/setup-macos.sh` | `scripts/setup-windows.ps1` | `docker run ghcr.io/cognis-digital/keyhound` | [DEPLOY.md](docs/DEPLOY.md) (AWS/Azure/GCP/k8s) |
 
 <div align="right"><a href="#top">↑ back to top</a></div>
 
@@ -421,11 +421,11 @@ curl -fsSL https://raw.githubusercontent.com/cognis-digital/keyhunt/main/install
 
 PRs, new rules, and demo scenarios are welcome under the collaboration-pull model — see [CONTRIBUTING.md](CONTRIBUTING.md) and [SECURITY.md](SECURITY.md).
 
-> ### ⭐ If `keyhunt` saved you time, **star it** — it genuinely helps others find it.
+> ### ⭐ If `keyhound` saved you time, **star it** — it genuinely helps others find it.
 
 ## Interoperability
 
-`keyhunt` composes with the 300+ tool Cognis suite — JSON in/out and a shared
+`keyhound` composes with the 300+ tool Cognis suite — JSON in/out and a shared
 OpenAI-compatible `/v1` backbone. See **[INTEROP.md](INTEROP.md)** for the
 suite map, composition patterns, and reference stacks.
 
@@ -439,11 +439,11 @@ Source-available under the **Cognis Open Collaboration License (COCL) v1.0** —
 
 ## Bundled offline data
 
-- **Vulnerability DB** — `keyhunt/cognis_vulndb.jsonl.gz`: **262,351 real
+- **Vulnerability DB** — `keyhound/cognis_vulndb.jsonl.gz`: **262,351 real
   vulnerabilities** (OSV across 7 ecosystems) with detailed metadata; offline
   stdlib loader `vulndb_local.VulnDB`, air-gap ready. See
   [Vulnerability database](#vulndb).
-- **Edge feed catalog** — `keyhunt/data_feeds_2026.json` + `keyhunt/datafeeds.py`:
+- **Edge feed catalog** — `keyhound/data_feeds_2026.json` + `keyhound/datafeeds.py`:
   keyless, offline-capable refresh of CISA KEV / EPSS / OSV / NVD / ATT&CK /
   OSCAL / abuse.ch, with snapshot export/import for sneakernet to an air gap.
   See [Edge data feeds](#feeds).

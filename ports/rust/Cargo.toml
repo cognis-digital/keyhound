@@ -1,10 +1,10 @@
 [package]
-name = "keyhunt"
+name = "keyhound"
 version = "1.2.9"
 edition = "2021"
 license = "LicenseRef-COCL-1.0"
-description = "Rust port of keyhunt — passive firmware/filesystem secret scanner (Cognis Neural Suite)"
+description = "Rust port of keyhound — passive firmware/filesystem secret scanner (Cognis Neural Suite)"
 
 [[bin]]
-name = "keyhunt"
+name = "keyhound"
 path = "src/main.rs"
