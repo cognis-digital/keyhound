@@ -1,0 +1,20 @@
+[2026-07-19 18:44:04] === enhance · keyhunt · words=120000 loc>=10000 langs=9 push=True ===
+[2026-07-19 18:44:09] phase DOCS — longform 120000-word corpus -> docs/corpus/
+[2026-07-20 01:43:32] phase POLYGLOT — expanding to >= 10000 LOC across 9 languages
+[2026-07-20 01:44:03]   facets: ['blob_parser', 'credential_scanner', 'crypto_analyzer', 'entropy_checker', 'default_secret_db', 'report_generator']
+[2026-07-20 01:45:20]   +polyglot/python/blob_parser.py  (loc now ~3746)
+[2026-07-20 01:47:14]   +polyglot/go/blob_parser.go  (loc now ~4230)
+[2026-07-20 01:49:22]   +polyglot/rust/blob_parser.rs  (loc now ~4686)
+[2026-07-20 01:51:16]   +polyglot/typescript/blob_parser.ts  (loc now ~5024)
+[2026-07-20 01:53:25]   +polyglot/c/blob_parser.c  (loc now ~5452)
+[2026-07-20 01:55:19]   +polyglot/cpp/blob_parser.cpp  (loc now ~5890)
+[2026-07-20 01:57:13]   +polyglot/java/blob_parser.java  (loc now ~6403)
+[2026-07-20 01:59:21]   +polyglot/ruby/blob_parser.rb  (loc now ~6798)
+[2026-07-20 02:01:15]   +polyglot/csharp/blob_parser.cs  (loc now ~7259)
+[2026-07-20 02:03:22]   +polyglot/python/credential_scanner.py  (loc now ~7723)
+[2026-07-20 02:05:16]   +polyglot/go/credential_scanner.go  (loc now ~8181)
+[2026-07-20 02:07:10]   +polyglot/rust/credential_scanner.rs  (loc now ~8631)
+[2026-07-20 02:09:16]   +polyglot/typescript/credential_scanner.ts  (loc now ~9126)
+[2026-07-20 02:11:09]   +polyglot/c/credential_scanner.c  (loc now ~9540)
+[2026-07-20 02:12:46]   +polyglot/cpp/credential_scanner.cpp  (loc now ~9866)
+[2026-07-20 02:14:31]   +polyglot/java/credential_scanner.java  (loc now ~10309)
